@@ -3,13 +3,22 @@
 // Use this statement, you can stay away from several frequent mistakes 
 'use strict';
 
-// Modules your wanna use
-// # Syntax: `require(module_identifier)`
-
-// Before you `require('ajax')`, you should exec `ctx install ajax --save first`
-var lang = require('ajax');
+// How to use a foreign module ?
+// 'cortex-hello' for example:
+//
+// 1. install dependency, exec the command below at the root of the current repo:
+// 		ctx install cortex-hello --save
+// 2. use `require(module_idendifier)` method:
+// 		var hello = require('cortex-hello');
 
 // `exports` is the API of the current module
 exports.my_method = function() {
-    return 1;
+    // your code...
 };
+
+// or you could code like this:
+// 		module.exports = {
+// 			my_method: function() {
+// 	    		hello();
+// 			}
+// 		};
