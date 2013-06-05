@@ -3390,25 +3390,40 @@ Runnable.prototype.run = function(fn){
 
   // async
   if (this.async) {
-    try {
+
+    if(!mocha.NO_CATCH_EXCEPTIONS){
+      try {
+        this.fn.call(ctx, function(err){
+          if (err instanceof Error) return done(err);
+          if (null != err) return done(new Error('done() invoked with non-Error: ' + err));
+          done();
+        });
+      } catch (err) {
+        done(err);
+      }
+    }else{
       this.fn.call(ctx, function(err){
         if (err instanceof Error) return done(err);
         if (null != err) return done(new Error('done() invoked with non-Error: ' + err));
         done();
       });
-    } catch (err) {
-      done(err);
     }
     return;
   }
   
   // sync
-  try {
+  if(!mocha.NO_CATCH_EXCEPTIONS){
+    try {
+      if (!this.pending) this.fn.call(ctx);
+      this.duration = new Date - start;
+      fn();
+    } catch (err) {
+      fn(err);
+    }
+  }else{
     if (!this.pending) this.fn.call(ctx);
     this.duration = new Date - start;
     fn();
-  } catch (err) {
-    fn(err);
   }
 };
 
@@ -3712,13 +3727,20 @@ Runner.prototype.runTest = function(fn){
   var test = this.test
     , self = this;
 
-  try {
+  if(!mocha.NO_CATCH_EXCEPTIONS){
+    try {
+      test.on('error', function(err){
+        self.fail(test, err);
+      });
+      test.run(fn);
+    } catch (err) {
+      fn(err);
+    }
+  }else{
     test.on('error', function(err){
       self.fail(test, err);
     });
     test.run(fn);
-  } catch (err) {
-    fn(err);
   }
 };
 
