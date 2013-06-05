@@ -2,7 +2,12 @@
 <head>
 <meta charset="UTF-8">
 
-<script src="http://localhost:8765/mod/neuronjs/2.0.1/neuron.js" id="neuron-js" data-path="mod"></script>
+<script 
+src="http://localhost:8765/mod/neuronjs/2.0.1/neuron.js" 
+id="neuron-js" 
+data-path="mod" 
+data-server="http://localhost:8765"></script>
+
 <script>
 NR.Loader.on({
     provide: function(e) {
@@ -35,7 +40,7 @@ chai.should();
 !window.PHANTOMJS && mocha.setup("bdd");
 
 </script>
-<script src="./spec/require.js"></script>
+<script src="./spec/{%= name %}_test.js"></script>
 
 <script>
 
