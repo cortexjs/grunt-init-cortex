@@ -53,13 +53,13 @@ Then cortex will care all the rest.
 
 
 
-### {%= name %}.<method-name>(arguments)
+### {%= name %}.\<method-name\>(arguments)
 Means this is a static method of `module.exports`
 
 #### arguments
 // arguments description here
 
-### .<method-name>(arguments)
+### .\<method-name\>(arguments)
 Mean this is a method of the instance
 
 #### arguments
