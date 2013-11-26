@@ -16,9 +16,9 @@ Visit [http://nodejs.org](http://nodejs.org), download and install the proper ve
 
 ## Using {%= name %} In Your Project
 
-First, install '{%= name %}' directly with `ctx install` (recommended)
+First, install '{%= name %}' directly with `cortex install` (recommended)
 	
-	ctx install {%= name %} --save
+	cortex install {%= name %} --save
 	
 or, you could update your package.json manually
     
@@ -28,7 +28,7 @@ or, you could update your package.json manually
     
 and install dependencies
 	
-	ctx install
+	cortex install
     
 Then, use `require` method in your module
     
@@ -36,7 +36,7 @@ Then, use `require` method in your module
     
 Finally, start cortex server
     
-    ctx server
+    cortex server
     
 Then cortex will care all the rest.
 
