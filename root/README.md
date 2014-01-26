@@ -17,27 +17,27 @@ Visit [http://nodejs.org](http://nodejs.org), download and install the proper ve
 ## Using {%= name %} In Your Project
 
 First, install '{%= name %}' directly with `cortex install` (recommended)
-	
+
 	cortex install {%= name %} --save
-	
+
 or, you could update your package.json manually
-    
+
     dependencies: {
         '{%= name %}': '<version-you-want>'
     }
-    
+
 and install dependencies
-	
+
 	cortex install
-    
+
 Then, use `require` method in your module
-    
+
     var {%= name %} = require('{%= name %}');
-    
+
 Finally, start cortex server
-    
+
     cortex server
-    
+
 Then cortex will care all the rest.
 
 
@@ -47,7 +47,7 @@ Then cortex will care all the rest.
 ': constructor' means the `module.exports` of module '{%= name %}' is a constructor that we should use it with the `new` keyword
 
 	new {%= name %}(options)
-	
+
 #### options
 - options.name {String}
 
