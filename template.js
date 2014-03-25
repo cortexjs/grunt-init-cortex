@@ -31,7 +31,7 @@ exports.template = function(grunt, init, done) {
   init.process({}, [
     // Prompt for these values.
     init.prompt('name'),
-    init.prompt('description'),
+    init.prompt('description', 'The coolest cortex module'),
     init.prompt('version'),
     init.prompt('repository'),
     init.prompt('homepage'),
@@ -43,15 +43,7 @@ exports.template = function(grunt, init, done) {
     init.prompt('npm_test', 'grunt test')
   ], function(err, props) {
     props.keywords = [];
-    props.devDependencies = {
-      "grunt": "~0.4.1",
-      "grunt-mocha": "~0.3.1",
-      "grunt-contrib-connect": "~0.3.0",
-      'grunt-contrib-concat': '~0.1.2',
-      'grunt-contrib-uglify': '~0.1.1',
-      'grunt-contrib-jshint': '~0.1.1',
-      'grunt-contrib-watch': '~0.2.0',
-    };
+    props.devDependencies = {};
 
     // Files to copy (and process).
     var files = init.filesToCopy(props);
@@ -63,7 +55,16 @@ exports.template = function(grunt, init, done) {
     init.copyAndProcess(files, props);
 
     // Generate package.json file.
-    init.writePackageJSON('package.json', props);
+    init.writePackageJSON('package.json', props, function(pkg, props){
+      pkg.cortex = {
+        "devDependencies": {
+          "neuron": "~3.5.6"
+        },
+        "asyncDependencies": {},
+        "scripts": {}
+      };
+      return pkg
+    });
 
     // All done!
     done();
