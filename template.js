@@ -58,7 +58,7 @@ exports.template = function(grunt, init, done) {
     init.writePackageJSON('package.json', props, function(pkg, props){
       pkg.cortex = {
         "devDependencies": {
-          "neuron": "~3.5.6"
+          "neuron": "*"
         },
         "asyncDependencies": {},
         "scripts": {}
